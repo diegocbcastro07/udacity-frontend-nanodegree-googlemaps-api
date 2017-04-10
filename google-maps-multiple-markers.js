@@ -10,14 +10,6 @@ let marker = {};
 function initMap() {
 
   /**
-   * Changes of the styles of the markers
-   * Mundanças dos estilos dos marcadores
-  */
-
-    let defaultMarker = makeMarkerIcon('ffffff');
-    let lightMarker = makeMarkerIcon('0091ff');
-
-  /**
    * Creating initial map
    * Criando mapa inicial
   */
@@ -29,8 +21,7 @@ function initMap() {
           lat : 40.7413549,
           lng : -73.9980244
         },
-        zoom: 13,
-        styles : styles
+        zoom: 13
       }
     );
 
@@ -46,7 +37,7 @@ function initMap() {
       {title: 'East Village Hip Studio', location: {lat: 40.7281777, lng: -73.984377}},
       {title: 'TriBeCa Artsy Bachelor Pad', location: {lat: 40.7195264, lng: -74.0089934}},
       {title: 'Chinatown Homey Space', location: {lat: 40.7180628, lng: -73.9961237}}
-    ];
+      ];
 
   /**
    * Creating info window
@@ -54,6 +45,13 @@ function initMap() {
   */
 
     let largeInfoWindow = new google.maps.InfoWindow();
+
+  /**
+   * Creating variable to zooming the map to show all the markers
+   * Criando uma variável para ampliar o mapa para mostrar todos os marcadores
+  */
+
+    let bounds = new google.maps.LatLngBounds();
 
   /**
    * Loop to iterate in all localizations configuring the marker and push into markers array
@@ -67,33 +65,21 @@ function initMap() {
       let title = locations[i].title;
 
       marker = new google.maps.Marker({
+        'map' : map,
         'position' : position,
         'title' : title,
-        'icon' : defaultMarker,
         'animation' : google.maps.Animation.DROP,
-        'id' : i,
-        'draggable' : true
+        'id' : i
       });
       markers.push(marker);
+
+      bounds.extend(marker.position);
 
       marker.addListener('click', function () {
           populateInfoWindow(this, largeInfoWindow);
         }
       );
-
-      marker.addListener('mouseover', function () {
-          this.setIcon(lightMarker);
-        }
-      );
-      marker.addListener('mouseout', function () {
-          this.setIcon(defaultMarker);
-        }
-      );
     };  // End Loop / Fim do Loop
-    
-    document.getElementById('show').addEventListener('click', show);
-    document.getElementById('hide').addEventListener('click', hide);
-};
 
   /**
    *  Function to populate the info window based on marker
@@ -103,48 +89,15 @@ function initMap() {
     function populateInfoWindow (marker, infowindow) {
       if(infowindow.marker != marker) {
         infowindow.marker = marker;
-        infowindow.setContent('<div>' + marker.title + ' ' + marker.getPosition() + '</div>');
+        infowindow.setContent('<div>' + marker.title + '</div>');
         infowindow.open(map, marker);
       }
     };
 
   /**
-   *  Function to show all markers
-   *  Função para mostrar todos os marcadores
+   * Zooming the map to show all the markers based on markers created
+   * Ampliar o mapa para mostrar todos os marcadores com base nos marcadores criados
   */
 
-    function show() {
-      var bounds = new google.maps.LatLngBounds();
-      // Extend the boundaries of the map for each marker and display the marker
-      for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
-        bounds.extend(markers[i].position);
-      }
-      map.fitBounds(bounds);
-    };
-
-  /**
-   * Function to hide all markers
-   * Função para esconder todos os marcadores
-  */
-    
-    function hide() {
-      for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(null);
-      }
-    };
-
-  /**
-   * Function to hide all markers
-   * Função para esconder todos os marcadores
-  */
-    
-    function makeMarkerIcon(markerColor) {
-      let markerImage = new google.maps.MarkerImage(
-          'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|' + markerColor + '|40|_|%E2%80%A2',
-          new google.maps.Size(21, 34),
-          new google.maps.Point(0, 0),
-          new google.maps.Point(10, 34),
-          new google.maps.Size(21, 34));
-      return markerImage;
-    };
+    map.fitBounds(bounds);
+};
