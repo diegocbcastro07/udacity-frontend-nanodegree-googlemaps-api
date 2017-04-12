@@ -1,3 +1,14 @@
+/**
+ * Google Maps Samples Geometry Library
+ * 
+ * English:
+ * Sample of usage a Geometry Library to show street view inside the info window of the marker.
+ * 
+ * Portuguese: 
+ * Exemplo de uso da biblioteca geometry para mostrar o street view dentro da janela de informações do marcador.
+ * 
+ */
+
   /**
    * Creating global variables
    * Criando variáveis globais

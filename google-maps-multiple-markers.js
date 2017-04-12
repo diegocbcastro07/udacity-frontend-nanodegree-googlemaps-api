@@ -1,3 +1,14 @@
+/**
+ * Google Maps Samples Multiple Markers
+ * 
+ * English:
+ * Sample of usage with multiple markers inside the map.
+ * 
+ * Portuguese: 
+ * Exemplo de uso com multiplos marcadores dentro do mapa.
+ * 
+ */
+
   /**
    * Creating global variables
    * Criando variáveis globais

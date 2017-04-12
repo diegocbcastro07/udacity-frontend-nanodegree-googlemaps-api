@@ -1,3 +1,14 @@
+/**
+ * Google Maps Samples Simple Marker
+ * 
+ * English:
+ * Sample of usage with a simple marker inside the map.
+ * 
+ * Portuguese: 
+ * Exemplo de uso com um marcador simples dentro do mapa.
+ * 
+ */
+
 let map;
 function initMap() {
 

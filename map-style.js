@@ -1,6 +1,11 @@
   /**
-   * Changes of the styles of the map
-   * Mundanças dos estilos do mapa
+   * Google Maps Styles
+   * 
+   * English:
+   * Standard map style changes.
+   * 
+   * Portuguese:
+   * Alterações de estilo do mapa padrão.
   */
 
     let styles = [
