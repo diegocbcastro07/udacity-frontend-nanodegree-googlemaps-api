@@ -10,14 +10,6 @@ let marker = {};
 function initMap() {
 
   /**
-   * Changes of the styles of the markers
-   * Mundanças dos estilos dos marcadores
-  */
-
-    let defaultMarker = makeMarkerIcon('ffffff');
-    let lightMarker = makeMarkerIcon('0091ff');
-
-  /**
    * Creating initial map
    * Criando mapa inicial
   */
@@ -30,7 +22,8 @@ function initMap() {
           lng : -73.9980244
         },
         zoom: 13,
-        styles : styles
+        styles : styles,
+        mapTypeControl: false
       }
     );
 
@@ -44,7 +37,7 @@ function initMap() {
       {title: 'Chelsea Loft', location: {lat: 40.7444883, lng: -73.9949465}},
       {title: 'Union Square Open Floor Plan', location: {lat: 40.7347062, lng: -73.9895759}},
       {title: 'East Village Hip Studio', location: {lat: 40.7281777, lng: -73.984377}},
-      {title: 'TriBeCa Artsy Bachelor Pad', location: {lat: 40.7195264, lng: -74.0089934}},
+      {title: 'Tribeca Artsy Bachelor Pad', location: {lat: 40.7195264, lng: -74.0089934}},
       {title: 'Chinatown Homey Space', location: {lat: 40.7180628, lng: -73.9961237}}
     ];
 
@@ -54,6 +47,14 @@ function initMap() {
   */
 
     let largeInfoWindow = new google.maps.InfoWindow();
+
+  /**
+   * Changes of the styles of the markers
+   * Mundanças dos estilos dos marcadores
+  */
+
+    let defaultMarker = makeMarkerIcon('ffffff');
+    let lightMarker = makeMarkerIcon('0091ff');
 
   /**
    * Loop to iterate in all localizations configuring the marker and push into markers array
@@ -71,8 +72,7 @@ function initMap() {
         'title' : title,
         'icon' : defaultMarker,
         'animation' : google.maps.Animation.DROP,
-        'id' : i,
-        'draggable' : true
+        'id' : i
       });
       markers.push(marker);
 
@@ -102,8 +102,42 @@ function initMap() {
 
     function populateInfoWindow (marker, infowindow) {
       if(infowindow.marker != marker) {
+        infowindow.setContent('');
         infowindow.marker = marker;
-        infowindow.setContent('<div>' + marker.title + ' ' + marker.getPosition() + '</div>');
+        let streetViewService = new google.maps.StreetViewService();
+        let radius = 50;
+
+        infowindow.addListener('closeclick', function() {
+          infowindow.marker = null;
+        });
+
+        /**
+         * Function to get Street View by location
+         * Função para obter o street view pela localização
+        */
+          
+          let getStreetView = (data, status) => {
+            if (status == google.maps.StreetViewStatus.OK){
+              let nearStreetViewLocation = data.location.latLng;
+              let heading = google.maps.geometry.spherical.computeHeading(
+                nearStreetViewLocation, marker.getPosition()
+              );
+              infowindow.setContent('<div>' + marker.title +  '</div><div id="pano"></div>');
+              let panoramaOptions = {
+                position : nearStreetViewLocation,
+                pov: {
+                  heading : heading,
+                  pitch : 30 
+                }
+              };
+              
+              let panorama = new google.maps.StreetViewPanorama (document.getElementById('pano'),panoramaOptions);
+            } else {
+              infowindow.setContent('<div>' + marker.title + ' ' + marker.getPosition() + '</div>');
+            }
+          };
+
+        streetViewService.getPanoramaByLocation(marker.getPosition(), radius, getStreetView);
         infowindow.open(map, marker);
       }
     };
@@ -148,3 +182,4 @@ function initMap() {
           new google.maps.Size(21, 34));
       return markerImage;
     };
+
