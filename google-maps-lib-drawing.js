@@ -152,6 +152,9 @@ function initMap() {
 
         polygon.getPath().addListener('set_at', searchWithinPolygon());
         polygon.getPath().addListener('insert_at', searchWithinPolygon());
+
+        area = google.maps.geometry.spherical.computeArea(polygon.getPath());
+        window.alert((Math.round(area * 100) / 100) + " Square Meters");
       }
     );
 };
