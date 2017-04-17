@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Google Maps</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <style>
+      #map {
+        height: 100%;
+      }
+      .map-card {
+        height: 650px!important;
+      }
+      .card {
+        border-radius: 10px;
+      }
+      #pano {
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+</head>
+<body class="grey darken-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col s12 l3 m12">
+        <div class="card z-depth-2">
+          <div class="card-content">
+              <div class="row">
+                <img class="responsive-img col s12 m6 l12"src="https://s-media-cache-ak0.pinimg.com/originals/a4/d7/18/a4d718d56609096aa8fd4252ef5cb307.png" alt="Maps API">
+              </div>
+              <h2 class="card-title">Google Maps API Features</h2>
+            <div class="col s12 m12 l12">
+              <div class="chip">
+                <img src="https://www.gstatic.com/images/branding/product/1x/maps_64dp.png" alt="Maps API">
+                Geocoding Library
+              </div>
+            </div>
+            <div class="input-field col s12">
+              <input class="col s10 m10 l10" placeholder="Search Area to zoom" id="search" type="text" class="validate">
+              <button class="btn-floating waves-effect waves-light" id="zoom-search" type="button"><i class="material-icons left">search</i></button>
+            </div>
+            <div class="col s12 m12 l12">
+              <div class="chip">
+                <img src="https://www.gstatic.com/images/branding/product/1x/maps_64dp.png" alt="Maps API">
+                Distance Matrix Library
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <select class="browser-default" id="max-duration">
+                  <option value="" disabled selected>Select Max Duration</option>
+                  <option value="10">10 Min</option>
+                  <option value="15">15 Min</option>
+                  <option value="30">30 Min</option>
+                  <option value="60">60 Min</option>
+                </select>
+              </div>
+              <div class="input-field col s12">
+                <select class="browser-default" id="mode">
+                  <option value="" disabled selected>Select Mode</option>
+                  <option value="DRIVING">Driving</option>
+                  <option value="WALKING">Walking</option>
+                  <option value="BICYCLING">Bicycling</option>
+                  <option value="TRANSIT">Transit</option>
+                </select>
+              </div>
+              <div class="input-field col s12">
+                <input id="search-within-time-input" placeholder="Ex: Google Office NYC" type="text">
+              </div>
+              <div class="input-field col s12">
+                <button class="btn-floating waves-effect waves-light" id="search-within-time"><i class="material-icons">near_me</i></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12 m12 l12">
+                <div class="chip">
+                  <img src="https://www.gstatic.com/images/branding/product/1x/maps_64dp.png" alt="Maps API">
+                  Drawing Library
+                </div>
+                <button class="btn-floating waves-effect waves-light" id="toggle-drawing" type="button"><i class="material-icons">brush</i></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12 m12 l12">
+                <div class="chip">
+                  <img src="https://www.gstatic.com/images/branding/product/1x/maps_64dp.png" alt="Maps API">
+                  Markers
+                </div>
+                <button class="btn-floating waves-effect waves-light" id="show" type="button"><i class="material-icons">place</i></button>
+                <button class="btn-floating waves-effect waves-light" id="hide" type="button"><i class="material-icons">visibility_off</i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 l9 m12">
+        <div class="card z-depth-2">
+          <div class="card-content map-card">
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/map-style.js"></script>
+  <script src="js/google-maps-api-routes-directions.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC64AmQ1i2N-fuTiRouKQX2TcfYKZEWOAY&libraries=drawing,geometry&v=3&callback=initMap"></script>
+</body>
+</html>
