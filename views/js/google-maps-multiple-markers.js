@@ -5,7 +5,7 @@
  * Sample of usage with multiple markers inside the map.
  * 
  * Portuguese: 
- * Exemplo de uso com multiplos marcadores dentro do mapa.
+ * Amostra de uso com multiplos marcadores dentro do mapa.
  * 
  */
 

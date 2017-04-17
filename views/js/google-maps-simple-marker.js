@@ -5,7 +5,7 @@
  * Sample of usage with a simple marker inside the map.
  * 
  * Portuguese: 
- * Exemplo de uso com um marcador simples dentro do mapa.
+ * Amostra de uso com um marcador simples dentro do mapa.
  * 
  */
 

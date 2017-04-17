@@ -1,11 +1,11 @@
 /**
- * Google Maps Samples Drawing Library
+ * Google Maps Samples Geocoding Library
  * 
  * English:
- * Sample of usage with Drawing Library to select specific area in the map.
+ * Sample of usage with Geocoding Library to zoom specific area in the map.
  * 
  * Portuguese: 
- * Exemplo de uso da biblioteca de desenho para seleção de áreas no mapa.
+ * Amostra de uso da biblioteca de localização para zoom em áreas do mapa.
  * 
  */
 
@@ -301,16 +301,13 @@ function initMap() {
       else {
         geocoder.geocode(
           {
-            address : address,
-            componentRestrictions : {
-              locality : 'New York'
-            }
-          }
-          ,
+            address : address
+          },
             function (results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
                 map.setZoom(15);
+                window.alert(results[0].formatted_address);
               } else {
                 window.alert('We could not find that location!');
               }

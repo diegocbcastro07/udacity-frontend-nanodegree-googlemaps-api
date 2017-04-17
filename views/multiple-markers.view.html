@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Google Maps</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    #map {
+      height: 100%;
+    }
+    
+    .map-card {
+      height: 650px!important;
+    }
+    
+    .card {
+      border-radius: 10px;
+    }
+    
+    #pano {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body class="grey darken-4">
+  <div class="container-fluid"><br>
+    <div class="row">
+      <img class="responsive-img col s2 m2 l2"src="https://s-media-cache-ak0.pinimg.com/originals/a4/d7/18/a4d718d56609096aa8fd4252ef5cb307.png" alt="Maps API">
+    </div>
+    <div class="row">
+      <div class="col s12 l12 m12">
+        <div class="card z-depth-2">
+          <div class="card-content map-card">
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/google-maps-multiple-markers.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC64AmQ1i2N-fuTiRouKQX2TcfYKZEWOAY&v=3&callback=initMap"></script>
+</body>
+
+</html>

@@ -44,47 +44,6 @@
               <input class="col s10 m10 l10" placeholder="Search Area to zoom" id="search" type="text" class="validate">
               <button class="btn-floating waves-effect waves-light" id="zoom-search" type="button"><i class="material-icons left">search</i></button>
             </div>
-            <div class="col s12 m12 l12">
-              <div class="chip">
-                <img src="https://www.gstatic.com/images/branding/product/1x/maps_64dp.png" alt="Maps API">
-                Distance Matrix Library
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <select class="browser-default" id="max-duration">
-                  <option value="" disabled selected>Select Max Duration</option>
-                  <option value="10">10 Min</option>
-                  <option value="15">15 Min</option>
-                  <option value="30">30 Min</option>
-                  <option value="60">60 Min</option>
-                </select>
-              </div>
-              <div class="input-field col s12">
-                <select class="browser-default" id="mode">
-                  <option value="" disabled selected>Select Mode</option>
-                  <option value="DRIVING">Driving</option>
-                  <option value="WALKING">Walking</option>
-                  <option value="BICYCLING">Bicycling</option>
-                  <option value="TRANSIT">Transit</option>
-                </select>
-              </div>
-              <div class="input-field col s12">
-                <input id="search-within-time-input" placeholder="Ex: Google Office NYC" type="text">
-              </div>
-              <div class="input-field col s12">
-                <button class="btn-floating waves-effect waves-light" id="search-within-time"><i class="material-icons">near_me</i></button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col s12 m12 l12">
-                <div class="chip">
-                  <img src="https://www.gstatic.com/images/branding/product/1x/maps_64dp.png" alt="Maps API">
-                  Drawing Library
-                </div>
-                <button class="btn-floating waves-effect waves-light" id="toggle-drawing" type="button"><i class="material-icons">brush</i></button>
-              </div>
-            </div>
             <div class="row">
               <div class="col s12 m12 l12">
                 <div class="chip">
@@ -108,7 +67,7 @@
     </div>
   </div>
   <script src="js/map-style.js"></script>
-  <script src="js/google-maps-api.js"></script>
+  <script src="js/google-maps-api-geocoding.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC64AmQ1i2N-fuTiRouKQX2TcfYKZEWOAY&libraries=drawing,geometry&v=3&callback=initMap"></script>
 </body>
 </html>
